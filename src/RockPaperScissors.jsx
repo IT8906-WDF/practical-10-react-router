@@ -6,12 +6,15 @@ import { IsEmojiContext } from './isEmojiContext';
 import { RecordsContext } from './recordsContext';
 import recordsReducer from './recordsReducer';
 
+import { Provider } from 'react-redux';
+import store from './storage';
+
 export default function RockPaperScissors(props) {
     const [isEmoji, setIsEmoji] = React.useState(false);
     const [records, dispatch] = React.useReducer(recordsReducer, []);
 
     return (
-        <RecordsContext.Provider value={records}>
+        <Provider store={store}>
             <IsEmojiContext.Provider value={isEmoji}>
                 <div>
                     <h1>Play rock-paper-scissors with me!</h1>
@@ -35,6 +38,6 @@ export default function RockPaperScissors(props) {
                     />
                 </div>
             </IsEmojiContext.Provider>
-        </RecordsContext.Provider>
+        </Provider>
     );
 }
